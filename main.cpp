@@ -46,25 +46,41 @@ bool test_body_contains_doji_candle() {
 /*< Tests for the `contains` method >*/
 bool test_contains_within_range() {
   Candle c(10, 15, 5, 12);
-  return c.contains(7); 
+  return c.contains(7);
 }
 
 bool test_contains_below_range() {
   Candle c(10, 15, 5, 12);
-  return (c.contains(1) == false);  
+  return (c.contains(1) == false);
 }
 
 bool test_contains_above_range() {
   Candle c(10, 15, 5, 12);
-  return (c.contains(20) == false); 
+  return (c.contains(20) == false);
 }
 
+/*< Tests for the `full_size` method >*/
+bool test_full_size_1() {
+  Candle c(10, 15, 5, 12);
+  return (c.full_size() == 10);
+}
+
+bool test_full_size_2() {
+  Candle c(10, 5, 15, 12);
+  return (c.full_size() == 10);
+}
+
+bool test_full_size_3() {
+  Candle c(10, 55, -45, 12);
+  return (c.full_size() == 100);
+}
 /*<  >*/
 
 int main() {
   TestCandel tc;
   tc.initTests({test_body_contains_red_candle, test_body_contains_green_candle,
                 test_body_contains_doji_candle, test_contains_within_range,
-                test_contains_below_range, test_contains_above_range});
+                test_contains_below_range, test_contains_above_range,
+                test_full_size_1, test_full_size_2, test_full_size_3});
   return tc.launchTests();
 }
