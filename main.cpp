@@ -2,7 +2,7 @@
 #include <functional>
 #include <iostream>
 
-#include "tests.h"
+#include "candle.h"
 
 //массив всех тестов, который мы заполняем в функции initTests
 static std::vector<std::function<bool()>> tests;
@@ -24,7 +24,7 @@ bool test2()
 //тест 3
 bool test3()
 {
-  Candle candle{ 0.0, 3.0, 3.0, 3.0 };
+    Candle candle{ 0.0, 3.0, 3.0, 3.0 };
 
   //пример какого-то теста
   return candle.high == 3.0;
