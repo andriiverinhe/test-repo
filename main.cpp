@@ -104,8 +104,22 @@ bool test_is_red_3() {
   Candle c(12, 5, 15, 12);
   return (c.is_red() == false);
 }
-/*< Tests for the `is_green` method >*/
 
+/*< Tests for the `is_green` method >*/
+bool test_is_green_1() {
+  Candle c(10, 5, 15, 12);
+  return (c.is_green() == true);
+}
+
+bool test_is_green_2() {
+  Candle c(12, 5, 15, 10);
+  return (c.is_green() == false);
+}
+
+bool test_is_green_3() {
+  Candle c(12, 5, 15, 12);
+  return (c.is_green() == false);
+}
 
 int main() {
   TestCandel tc;
@@ -114,6 +128,7 @@ int main() {
                 test_contains_below_range, test_contains_above_range,
                 test_full_size_1, test_full_size_2, test_full_size_3,
                 test_body_size_1, test_body_size_2, test_body_size_3,
-                test_is_red_1, test_is_red_2, test_is_red_3});
+                test_is_red_1, test_is_red_2, test_is_red_3, test_is_green_1,
+                test_is_green_2, test_is_green_3});
   return tc.launchTests();
 }
