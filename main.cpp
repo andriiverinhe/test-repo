@@ -74,6 +74,21 @@ bool test_full_size_3() {
   Candle c(10, 55, -45, 12);
   return (c.full_size() == 100);
 }
+/*< Tests for the `body_size` method >*/
+bool test_body_size_1() {
+  Candle c(5, 2, 18, 15);
+  return (c.body_size() == 10);
+}
+
+bool test_body_size_2() {
+  Candle c(15, 2, 18, 5);
+  return (c.body_size() == 10);
+}
+
+bool test_body_size_3() {
+  Candle c(55, 2, 18, -45);
+  return (c.body_size() == 100);
+}
 /*<  >*/
 
 int main() {
@@ -81,6 +96,7 @@ int main() {
   tc.initTests({test_body_contains_red_candle, test_body_contains_green_candle,
                 test_body_contains_doji_candle, test_contains_within_range,
                 test_contains_below_range, test_contains_above_range,
-                test_full_size_1, test_full_size_2, test_full_size_3});
+                test_full_size_1, test_full_size_2, test_full_size_3,
+                test_body_size_1, test_body_size_2, test_body_size_3});
   return tc.launchTests();
 }
