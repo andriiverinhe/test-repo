@@ -1,72 +1,53 @@
-﻿#include <vector>
-#include <functional>
+﻿#include <functional>
 #include <iostream>
+#include <vector>
 
+#include "TestCandel.h"
 #include "candle.h"
 
-//массив всех тестов, который мы заполняем в функции initTests
-static std::vector<std::function<bool()>> tests;
+/*< Tests for the `body_contains` method >*/
+bool test_body_contains_red_candle() {
+  Candle redCandle(12, 15, 5, 10);
+  bool result = true;
 
-//тест 1
-bool test1()
-{
-  //пример какого-то теста
-  return 42 == (41 + 1); //passed
+  if (redCandle.body_contains(11) == false) result = false;
+  if (redCandle.body_contains(12) == false) result = false;
+  if (redCandle.body_contains(10) == false) result = false;
+  if (redCandle.body_contains(9) == true) result = false;
+  if (redCandle.body_contains(13) == true) result = false;
+
+  return result;
 }
 
-//тест 2
-bool test2()
-{
-  //пример какого-то теста
-  return 42 != (41 + 1); //failed
+bool test_body_contains_green_candle() {
+  Candle greenCandle(10, 15, 5, 12);
+  bool result = true;
+
+  if (greenCandle.body_contains(11) == false) result = false;
+  if (greenCandle.body_contains(10) == false) result = false;
+  if (greenCandle.body_contains(12) == false) result = false;
+  if (greenCandle.body_contains(9) == true) result = false;
+  if (greenCandle.body_contains(13) == true) result = false;
+
+  return result;
 }
 
-//тест 3
-bool test3()
-{
-    Candle candle{ 0.0, 3.0, 3.0, 3.0 };
+bool test_body_contains_doji_candle() {
+  Candle neutralCandle(10, 10, 5, 10);
+  bool result = true;
 
-  //пример какого-то теста
-  return candle.high == 3.0;
+  if (neutralCandle.body_contains(10) == false) result = false;
+  if (neutralCandle.body_contains(9) == true) result = false;
+  if (neutralCandle.body_contains(11) == true) result = false;
+
+  return result;
 }
 
-void initTests()
-{
-  tests.push_back(test1);
-  tests.push_back(test2);
-  tests.push_back(test3);
-  //tests.push_back(test4);
-  //tests.push_back(test5);
-}
+/*< >*/
 
-int launchTests()
-{
-  int total = 0;
-  int passed = 0;
-
-  for (const auto& test : tests)
-  {
-    std::cout << "test #" << (total + 1);
-    if (test())
-    {
-      passed += 1;
-      std::cout << " passed\n";
-    }
-    else
-    {
-      std::cout << " failed\n";
-    }
-    total += 1;
-  }
-
-  std::cout << "\ntests " << passed << "/" << total << " passed!" << std::endl;
-
-  //0 = success
-  return total - passed;
-}
-
-int main()
-{
-  initTests();
-  return launchTests();
+int main() {
+  TestCandel tc;
+  tc.initTests({test_body_contains_red_candle, test_body_contains_green_candle,
+                test_body_contains_doji_candle});
+  return tc.launchTests();
 }

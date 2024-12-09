@@ -8,6 +8,7 @@ set(SOURCES
 
 set(HEADERS
     candle.h
+    TestCandel.h
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
